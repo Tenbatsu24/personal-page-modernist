@@ -1,0 +1,53 @@
+---
+layout: base
+title: Projects
+---
+<div class="wrapper">
+
+  <header>
+    <div class="profile-section">
+      <h1>{{ site.author.name }}</h1>
+      <div class="profile-image">
+        <img src="{{ site.baseurl }}/assets/images/profile.jpg" alt="Portrait of {{ site.author.name }}" id="face_img" decoding="async">
+      </div>
+    </div>
+
+    <h3>Links</h3>
+    <nav class="view">
+      <a href="https://scholar.google.com/{{ site.author.scholar }}" target="_blank" rel="noopener">Google Scholar</a><br>
+      <a href="https://github.com/{{ site.author.github }}" target="_blank" rel="noopener">GitHub</a><br>
+      <a href="https://twitter.com/{{ site.author.twitter }}" target="_blank" rel="noopener">X (Twitter)</a><br>
+      <a href="https://linkedin.com/in/{{ site.author.linkedin }}" target="_blank" rel="noopener">LinkedIn</a><br>
+    </nav>
+  </header>
+
+  <main id="main" role="main">
+    <h2>Projects</h2>
+    {% if site.projects.size > 0 %}
+      <div class="projects-grid">
+        {% for project in site.projects %}
+        <div class="project-card">
+          {% if project.thumbnail %}
+            <div class="project-thumbnail">
+              <img src="{{ site.baseurl }}/assets/images/{{ project.thumbnail }}" alt="{{ project.name }}">
+            </div>
+          {% endif %}
+          <div class="project-content">
+            <h3><a href="{{ site.baseurl }}{{ project.url }}">{{ project.name }}</a></h3>
+            <p>{{ project.description | strip_html | truncatewords: 25 }}</p>
+            {% if project.tags %}
+              <div class="project-tags">
+                {% for tag in project.tags %}
+                  <span class="tag">{{ tag }}</span>
+                {% endfor %}
+              </div>
+            {% endif %}
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+    {% else %}
+      <p>No projects yet. Add your first project in <code>_projects/</code>!</p>
+    {% endif %}
+  </main>
+</div>
