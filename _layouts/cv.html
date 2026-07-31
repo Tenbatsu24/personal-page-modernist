@@ -1,23 +1,20 @@
 ---
 layout: base
 ---
-<div class="wrapper">
+<main id="main" role="main">
+  <h3>Curriculum Vitae</h3>
 
-  <main id="main" role="main">
-    <h3>Curriculum Vitae</h3>
+  <p>Download my CV as a PDF:</p>
+  <p>
+    <a href="{{ site.baseurl }}/cv/cv.pdf" target="_blank" rel="noopener" class="cv-download-btn">
+      &#128190; Download CV (PDF)
+    </a>
+  </p>
 
-    <p>Download my CV as a PDF:</p>
-    <p>
-      <a href="{{ site.baseurl }}/cv/cv.pdf" target="_blank" rel="noopener" class="cv-download-btn">
-        &#128190; Download CV (PDF)
-      </a>
-    </p>
+  <p><small>Place your CV PDF in the <code>cv/</code> directory. Update the link above if you use a different filename.</small></p>
 
-    <p><small>Place your CV PDF in the <code>cv/</code> directory. Update the link above if you use a different filename.</small></p>
-
-    <p><small><a href="{{ site.baseurl }}/">&larr; Back to home</a></small></p>
-  </main>
-</div>
+  <p><small><a href="{{ site.baseurl }}/">&larr; Back to home</a></small></p>
+</main>
 
 <script>
   function copyEmail() {
