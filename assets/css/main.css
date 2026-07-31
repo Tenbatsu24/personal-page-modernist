@@ -50,7 +50,7 @@ html[data-theme="dark"] {
 
 body {
   background-color: var(--bg);
-  padding: 50px;
+  padding: 25px 50px 50px 50px;
   font: 15px/1.6 "JetBrains Mono", "Fira Code", "SF Mono", Monaco, "Cascadia Code", "Roboto Mono", Consolas, "Courier New", monospace;
   color: var(--text);
   font-weight: 400;
@@ -145,6 +145,10 @@ a small {
   color: var(--heading);
   text-decoration: none;
 }
+.nav-brand {
+  margin-right: 5px;
+  align-items: left;
+}
 .main-nav .nav-brand:hover { color: var(--accent); }
 .main-nav .nav-links {
   list-style: none;
@@ -192,11 +196,20 @@ a small {
 }
 #face_img:hover { transform: scale(1.02); }
 
+header img:not(#face_img) {
+  height: 28px;
+  width: auto;
+}
+
 header {
+  padding-top: 25px;
   width: 270px;
   float: left;
   position: fixed;
   -webkit-font-smoothing: subpixel-antialiased;
+}
+main {
+  padding-top: 25px;
 }
 header h3 { margin: 20px 0 10px 0; }
 
@@ -423,7 +436,8 @@ small { font-size: 11px; }
     position: static;
     width: auto;
   }
-  header { padding-right: 0; margin-bottom: 30px; }
+  header { margin-top: 10px; padding-right: 0; margin-bottom: 30px; }
+  main { margin-top: 10px; }
   section, main {
     border: 1px solid var(--border);
     border-width: 1px 0;
@@ -433,6 +447,11 @@ small { font-size: 11px; }
   #face_img { width: 200px; }
   .main-nav .nav-inner { padding: 10px 20px; }
   .theme-toggle { top: 55px; right: 15px; }
+
+  header img:not(#face_img) {
+    height: 24px;
+    width: auto;
+  }
 }
 
 /* Responsive: small */

@@ -2,7 +2,7 @@
 layout: post
 title: "Welcome to My Blog"
 date: 2024-01-15 12:00:00 -0000
-categories: announcement
+categories: [announcement]
 excerpt: A sample blog post to demonstrate the blog feature.
 ---
 

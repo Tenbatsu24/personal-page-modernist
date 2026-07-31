@@ -4,36 +4,25 @@ title: Blog
 ---
 <div class="wrapper">
 
-  <header>
-    <div class="profile-section">
-      <h1>{{ site.author.name }}</h1>
-      <div class="profile-image">
-        <img src="{{ site.baseurl }}/assets/images/profile.jpg" alt="Portrait of {{ site.author.name }}" id="face_img" decoding="async">
-      </div>
-    </div>
-
-    <h3>Links</h3>
-    <nav class="view">
-      <a href="https://scholar.google.com/{{ site.author.scholar }}" target="_blank" rel="noopener">Google Scholar</a><br>
-      <a href="https://github.com/{{ site.author.github }}" target="_blank" rel="noopener">GitHub</a><br>
-      <a href="https://twitter.com/{{ site.author.twitter }}" target="_blank" rel="noopener">X (Twitter)</a><br>
-      <a href="https://linkedin.com/in/{{ site.author.linkedin }}" target="_blank" rel="noopener">LinkedIn</a><br>
-    </nav>
-  </header>
-
   <main id="main" role="main">
+
     <h2>Blog</h2>
-    {% if site.posts.size > 0 %}
+    {% assign posts = site.posts | sort: 'date' | reverse %}
+    {% if posts.size > 0 %}
       <ul class="blog-list">
-        {% for post in site.posts %}
+        {% for post in posts %}
         <li>
           <a href="{{ site.baseurl }}{{ post.url }}"><b>{{ post.title }}</b></a>
-          <small>{{ post.date | date: "%B %d, %Y" }}</small>
+          <small>{{ post.date | date: "%b %d, %Y" }}{% if post.categories %} &middot; {{ post.categories | array_to_string_separator: ", " }}{% endif %}</small>
+          {% if post.excerpt %}
+            <p class="excerpt"><small>{{ post.excerpt | strip_html | truncatewords: 30 }}</small></p>
+          {% endif %}
         </li>
         {% endfor %}
       </ul>
     {% else %}
-      <p>No posts yet. Add your first post in <code>_posts/</code>!</p>
+      <p><small>[No blog posts yet. Add posts in the <code>_posts/</code> directory.]</small></p>
     {% endif %}
+
   </main>
 </div>

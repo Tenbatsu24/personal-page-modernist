@@ -3,41 +3,40 @@ layout: base
 ---
 <div class="wrapper">
 
-  <header>
-    <div class="profile-section">
-      <h1>{{ site.author.name }}</h1>
-      <div class="profile-image">
-        <img src="{{ site.baseurl }}/assets/images/profile.jpg" alt="Portrait of {{ site.author.name }}" id="face_img" decoding="async" fetchpriority="high">
-      </div>
-    </div>
-
-    <h3>Contact</h3>
-    <p>E-mail: <span class="email-copy" onclick="copyEmail()">{{ site.author.email | replace: "@", "(at)" }}</span></p>
-
-    <h3>Links</h3>
-    <nav class="view">
-      <a href="https://scholar.google.com/{{ site.author.scholar }}" target="_blank" rel="noopener">Google Scholar</a><br>
-      <a href="https://github.com/{{ site.author.github }}" target="_blank" rel="noopener">GitHub</a><br>
-      <a href="https://twitter.com/{{ site.author.twitter }}" target="_blank" rel="noopener">X (Twitter)</a><br>
-      <a href="https://linkedin.com/in/{{ site.author.linkedin }}" target="_blank" rel="noopener">LinkedIn</a><br>
-    </nav>
-  </header>
-
   <main id="main" role="main">
 
+    {%- assign p = site.data.profile -%}
+
+    <!-- Affiliation -->
     <h3>Affiliation</h3>
     <p>
-      Ph.D. researcher @ <a href="[your lab link]">[Your Lab / Group, Your University]</a><br>
-      Supervisors: <a href="[supervisor 1 link]">[Supervisor 1]</a>, <a href="[supervisor 2 link]">[Supervisor 2]</a>
+      {{ p.affiliation.role }} @
+      {% if p.affiliation.lab_link %}
+        <a href="{{ p.affiliation.lab_link }}">{{ p.affiliation.lab }}</a>
+      {% else %}
+        {{ p.affiliation.lab }}
+      {% endif %}
+      <br>
+      Supervisors:
+      {% for sup in p.affiliation.supervisors %}
+        {% if sup.link %}
+          <a href="{{ sup.link }}">{{ sup.name }}</a>
+        {% else %}
+          {{ sup.name }}
+        {% endif %}
+        {% if forloop.last != true %}, {% endif %}
+      {% endfor %}
     </p>
 
+    <!-- Research Interests -->
     <h3>Research Interests</h3>
     <ul>
-      <li>Artificial Intelligence and Cognitive Modelling</li>
-      <li>[Add your own topics, e.g. Computational Neuroscience]</li>
-      <li>[Add another focus]</li>
+      {% for interest in p.research_interests %}
+        <li>{{ interest }}</li>
+      {% endfor %}
     </ul>
 
+    <!-- Latest News -->
     <h3>Latest News</h3>
     <ul class="news-list">
       {% assign recent_posts = site.posts | limit: 3 %}
@@ -52,22 +51,23 @@ layout: base
       {% endif %}
     </ul>
 
+    <!-- Publications -->
     <h3>Publications</h3>
     <p>Full list available on <a href="https://scholar.google.com/{{ site.author.scholar }}" target="_blank" rel="noopener">Google Scholar</a>.</p>
     <ol>
+      {% for pub in p.publications %}
       <li class="publication-item">
         <div class="publication-thumbnail">
-          <img src="{{ site.baseurl }}/assets/images/pub_sample.jpg" alt="Sample publication thumbnail" loading="lazy">
+          <img src="{{ site.baseurl }}/assets/images/{{ pub.thumbnail }}" alt="Thumbnail for {{ pub.title }}" loading="lazy">
         </div>
         <div class="publication-content">
-          [Your Name], [Coauthors]<br>
-          <b><i>[Title of Your Paper]</i></b><br>
-          [Conference/Journal Name, Year]<br>
-          [<a href="[arxiv link]">arXiv</a>] [<a href="[code link]">code</a>] [<a href="[project page link]">project page</a>]
+          {{ pub.citation }}
         </div>
       </li>
+      {% endfor %}
     </ol>
 
+    <!-- Projects -->
     <h3>Projects</h3>
     {% if site.projects.size > 0 %}
       <div class="projects-grid">
@@ -97,20 +97,28 @@ layout: base
       <p><small>[No projects yet. Add projects in the <code>_projects/</code> directory.]</small></p>
     {% endif %}
 
+    <!-- Education -->
     <h3>Education</h3>
     <ul>
-      <li><b>Ph.D. [Your Field]</b> – [Your University], [Start Year] – present</li>
-      <li><b>M.Sc. [Your Field]</b> – [Previous University], [Years]</li>
-      <li><b>B.Sc. [Your Field]</b> – [Previous University], [Years]</li>
+      {% for edu in p.education %}
+      <li>
+        <b>{{ edu.degree }}</b> – {{ edu.institution }}
+        {% if edu.start %}{{ edu.start }}{% if edu.end %} – {{ edu.end }}{% endif %}{% endif %}
+      </li>
+      {% endfor %}
     </ul>
 
+    <!-- Experience -->
     <h3>Experience</h3>
     <ul>
-      <li><b>[Research Lab / Company]</b>, [Location], [Year–present] — [Your role]</li>
-      <li><b>[Other Institution]</b>, [Year–Year] — [Description]</li>
+      {% for exp in p.experience %}
+      <li>
+        <b>{{ exp.org }}</b>{% if exp.location != "" %} — {{ exp.location }}{% endif %} {{ exp.start }}{% if exp.end %}–{{ exp.end }}{% endif %} — {{ exp.role }}
+      </li>
+      {% endfor %}
     </ul>
 
-    <p><small>Hosted on GitHub Pages — Adapted from <a href="https://takerum.github.io/">Takeru Miyato</a>'s template.</small></p>
+    <p><small>{{ p.footer | markdownify | strip }}</small></p>
   </main>
 </div>
 

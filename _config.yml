@@ -1,23 +1,26 @@
 # Jekyll configuration — GitHub Pages compatible
 # Site settings
-title: Your Name
-email: you@yourdomain.edu
+title: "Ph.D. researcher"
+email: "researcher@university.edu"
 description: >-
-  A brief description — e.g. PhD researcher working on AI, machine learning, and computational neuroscience.
+  PhD researcher working on AI, machine learning, and ... .
 baseurl: "" # Set to "/modernist" if deploying as a subproject; leave empty for <username>.github.io
 url: "" # Set to "https://yourusername.github.io" when deploying
 
 # Author profile
 author:
-  name: Your Name
-  twitter: yourtwitterhandle
-  github: yourgithubusername
-  linkedin: yourlinkedinhandle
-
-# SCSS settings
-sass:
-  sass_dir: _sass
-  style: compressed
+  name: Daily Name
+  email: "researcher@university.edu"
+  image: "assets/images/profile.png"  # path relative to site baseurl (leave empty to hide)
+  github: "GITHUB_USERNAME"  # comment out to hide
+  scholar: "GOOGLE_SCHOLAR_ID"  # comment out to hide
+  twitter: "TWITTER_HANDLE"  # comment out to hide
+  bluesky: "BLUESKY_HANDLE"  # comment out to hide (e.g. "handle.bsky.social")
+  linkedin: "LINKEDIN_HANDLE"  # comment out to hide
+  mastodon: "MASTODON_HANDLE"  # comment out to hide (e.g. "@handle@mastodon.social")
+  orcid: "ORCID_ID"  # comment out to hide
+  cv: "CV_FILENAME.pdf"  # comment out to hide (path relative to site baseurl, e.g. "assets/files/cv.pdf")
+  website: "https://example.com"  # comment out to hide
 
 # Collections
 collections:
@@ -40,7 +43,8 @@ defaults:
       type: posts
     values:
       layout: post
-      categories: post
+      categories:
+        - post
   - scope:
       path: ""
       type: projects
@@ -50,5 +54,4 @@ defaults:
 # Exclude from processing
 exclude:
   - README.md
-  - plans/
-  - .idea/
+  - assets/images/svgs

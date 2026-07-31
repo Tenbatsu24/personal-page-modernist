@@ -1,46 +1,65 @@
 # Modernist — Personal Academic Website
 
-A Jekyll-powered personal website template for researchers and academics. Built on the original [Modernist theme](https://github.com/orderedlist/modernist) with blog, projects, and CV sections.
+A Jekyll-powered personal website template for researchers and academics. Built on the original [Modernist theme](https://github.com/orderedlist/modernist) with blog, projects, publications, and CV sections.
 
 ## Features
 
-- **Dark/Light mode** — toggle with the button in the top-right corner; preference persists in your browser
-- **Blog** — write posts in Markdown; they appear on the blog index and in the "Latest News" section on the homepage
-- **Projects** — showcase your research projects with thumbnails, tags, and links
+- **Dark/Light mode** — toggle in the top-right corner; preference persists in the browser
+- **Blog** — write posts in Markdown; they appear on the blog index and "Latest News" on the homepage
+- **Projects** — showcase research projects with thumbnails, tags, and links
+- **Publications** — display with thumbnails and citations on the homepage
 - **CV download** — link your CV PDF for easy sharing
 - **Responsive** — works on desktop, tablet, and mobile
-- **Syntax highlighting** — code blocks are highlighted automatically
 - **Zero build step** — GitHub Pages builds it automatically
 
 ## Getting Started
 
-### 1. Customize your site
+### 1. Configure your site
 
 Edit `_config.yml` with your information:
 
 ```yaml
-title: Your Name
-email: you@yourdomain.edu
+title: "Your Name"
+email: "you@university.edu"
+description: >-
+  Your research description here.
+baseurl: ""          # Set to "/repo-name" for project pages; leave empty for <username>.github.io
+url: ""              # Set to "https://yourusername.github.io" when deploying
+
 author:
-  name: Your Name
-  twitter: yourtwitterhandle
-  github: yourgithubusername
-  linkedin: yourlinkedinhandle
+  name: "Your Name"
+  email: "you@university.edu"
+  image: "assets/images/profile.png"  # Your profile photo
+  github: "yourusername"              # Comment out to hide
+  scholar: "YOUR_GOOGLE_SCHOLAR_ID"   # Comment out to hide
+  twitter: "handle"                   # Comment out to hide
+  bluesky: "handle.bsky.social"       # Comment out to hide
+  linkedin: "handle"                  # Comment out to hide
+  mastodon: "@handle@mastodon.social" # Comment out to hide
+  orcid: "YOUR_ORCID_ID"             # Comment out to hide
+  cv: "assets/files/cv.pdf"          # Comment out to hide
+  website: "https://example.com"      # Comment out to hide
 ```
+
+> **`baseurl` vs `url`**: Leave both empty for a user site (`username.github.io`). Set `baseurl` to `"/repo-name"` for a project site (`username.github.io/repo-name`).
 
 ### 2. Add your profile photo
 
-Place your profile image at `assets/images/profile.jpg`.
+Place your profile image at `assets/images/profile.png`.
 
-### 3. Add a CV
+### 3. Configure your homepage
 
-Place your CV PDF at `cv/cv.pdf`.
+All homepage content lives in `_data/profile.yml` — edit this file to set up your affiliation, research interests, education, experience, and publications. Do not edit `_layouts/default.html`.
 
-### 4. Write a blog post
+### 4. Add a CV
+
+Place your CV PDF at the path you reference in `_config.yml` (e.g. `assets/files/cv.pdf`).
+
+### 5. Write a blog post
 
 Create a file in `_posts/` named `YYYY-MM-DD-title.md`:
 
-```markdown
+```yaml
 ---
 layout: post
 title: "My Post Title"
@@ -51,11 +70,11 @@ categories: announcement
 Your content here...
 ```
 
-### 5. Add a project
+### 6. Add a project
 
-Create a file in `_projects/` named `project-name.md`:
+Create a file in `_projects/` named `project-slug.md`:
 
-```markdown
+```yaml
 ---
 layout: project
 name: "Project Name"
@@ -71,36 +90,42 @@ links:
 Project content here...
 ```
 
-### 6. Deploy to GitHub Pages
+## Building Locally
 
-1. Push this repository to GitHub
-2. Go to **Settings → Pages**
-3. Under **Source**, select **Deploy from a branch** and choose your branch (e.g., `main`)
-4. Your site will be live at `https://<username>.github.io/<repo>/`
+Run `jekyll clean && jekyll build` from the repo root. Jekyll on GitHub Pages uses a pinned version — check [the supported build matrix](https://pages.github.com/versions/) for the exact Ruby/Jekyll versions in use.
+
+```bash
+jekyll serve
+# → http://localhost:4000
+```
+
+No local build is required for deployment — GitHub handles it automatically (see below).
+
+## Deploy on GitHub Pages
+
+This repo is configured for GitHub Pages out of the box. Two options:
+
+### Commit-based build (simplest)
+
+1. Push to GitHub: `git remote add origin git@github.com:<username>/<repo>.git && git push -u origin main`
+2. Go to **Settings → Pages** in your repository
+3. Under **Build and deployment**, set **Source** to **Commit branch**
+4. Select your branch (usually `main`)
+5. Your site is live at `https://<username>.github.io`
 
 ## Directory Structure
 
 ```
-├── _config.yml          # Site configuration
-├── _layouts/            # Page layouts (base, homepage, post, project, CV)
-├── _sass/               # SCSS source (compiled to CSS by Jekyll)
-├── _posts/              # Blog posts
-├── _projects/           # Project pages
-├── assets/              # CSS, JS, images
-├── blog/                # Blog index page
-├── cv/                  # CV page
-├── projects/            # Projects index page
-├── stylesheets/         # Syntax highlighting (github-light, pygment_trac)
-└── index.html           # Homepage (uses default layout)
+_config.yml          # Site settings (name, email, links)
+_data/profile.yml    # Homepage content (affiliation, pubs, education)
+_layouts/           # Page templates (base, default, post, project, cv)
+_posts/             # Blog posts
+_projects/          # Project pages
+assets/             # CSS, JS, images
+cv/index.html       # CV page
+index.html          # Homepage
 ```
-
-## Customization
-
-- **Colors & theme**: Edit `assets/css/main.css` (or `_sass/main.scss` if you have a Sass compiler)
-- **Layout**: Edit the files in `_layouts/`
-- **Navigation**: Edit the nav section in `_layouts/base.html`
 
 ## License
 
-This work is licensed under a [Creative Commons Attribution-ShareAlike 3.0 Unported License](http://creativecommons.org/licenses/by-sa/3.0/).
-Original theme by [Takeru Miyato](https://takerum.github.io/).
+[Creative Commons Attribution-ShareAlike 3.0 Unported](http://creativecommons.org/licenses/by-sa/3.0/). Original theme by [Takeru Miyato](https://takerum.github.io/).
