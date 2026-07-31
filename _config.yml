@@ -4,8 +4,8 @@ title: "Ph.D. researcher"
 email: "researcher@university.edu"
 description: >-
   PhD researcher working on AI, machine learning, and ... .
-baseurl: "" # Set to "/modernist" if deploying as a subproject; leave empty for <username>.github.io
-url: "" # Set to "https://yourusername.github.io" when deploying
+baseurl: "/modernist-template" # Set to "/<project-name>" if deploying as a subproject; leave empty for <username>.github.io
+url: "tenbatsu24.github.io" # Set to "https://yourusername.github.io" when deploying
 
 # Author profile
 author:
