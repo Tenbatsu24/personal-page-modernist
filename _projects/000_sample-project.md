@@ -1,15 +1,25 @@
 ---
 layout: project
-name: "Sample Project"
+name: "(Side) Un-Featured Project"
 description: "A description of your project — what it does, why it matters, and what you built."
+
 date: 2024-01-01
-tags: [machine-learning, research, open-source]
-thumbnail: "project_sample.jpg"
+
+categories:
+  - project
+
+tags:
+  - machine-learning
+  - research
+  - open-source
+
+rank: 0
+
+thumbnail: "project_sample.png"
+
 links:
   - label: "GitHub Repository"
     url: "https://github.com/"
-  - label: "Paper (PDF)"
-    url: "#"
   - label: "Project Page"
     url: "#"
 ---

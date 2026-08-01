@@ -18,15 +18,6 @@ research_interests:
   - "[Add your own topics, e.g. Computational Neuroscience]"
   - "[Add another focus]"
 
-# ── Publications ────────────────────────────────────────────────────────────
-publications:
-  - thumbnail: "pub_sample.jpg"
-    citation: |
-      [Your Name], [Coauthors]<br>
-      <b><i>[Title of Your Paper]</i></b><br>
-      [Conference/Journal Name, Year]<br>
-      [<a href="[arxiv link]">arXiv</a>] [<a href="[code link]">code</a>] [<a href="[project page link]">project page</a>]
-
 # ── Education ───────────────────────────────────────────────────────────────
 education:
   - degree: "Ph.D. [Your Field]"

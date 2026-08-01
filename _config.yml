@@ -36,7 +36,6 @@ kramdown:
     css_class: highlight
     style: monokai
 
-# Defaults
 defaults:
   - scope:
       path: ""
@@ -50,6 +49,9 @@ defaults:
       type: projects
     values:
       layout: project
+      featured: false
+      categories:
+        - project
 
 # Exclude from processing
 exclude:
